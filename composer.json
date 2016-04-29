@@ -1,0 +1,32 @@
+{
+    "name" : "stackinstance/api-server-bundle",
+    "description" : "Stack Instance Api Server",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "Ray Kootstra",
+        "email" : "r.kootstra@stackinstance.com"
+    }],
+    "keywords" : [
+        "api server bundle"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+        "php": ">=5.5.0"
+    },
+    "repositories" : [{
+        "type" : "vcs",
+        "url" : "http://git.kootstradevelopment.nl/r.kootstra/stackinstance-bundles-api-server-bundle.git"
+    }],
+    "autoload": {
+        "psr-0": { "StackInstance\\ApiServerBundle": "" }
+    },
+
+    "target-dir": "StackInstance/ApiServerBundle",
+    "extra" : {
+    "branch-alias" : {
+            "dev-master" : "0.0.1-dev"
+        }
+    }
+}
