@@ -1,0 +1,3 @@
+stack_instance_api_server_example:
+    path:     /example
+    defaults: { _controller: StackInstanceApiServerBundle:Example:index }
