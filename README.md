@@ -1,9 +1,17 @@
-# api-server-bundle
-Api server bundle
+#Stack Instance Api Server bundle
 
-# routing to see an example:
+## How to install
+composer require stackinstance/api-server-bundle
+
+## Routing to see an example:
 ```YML
 stack_instance_api_server:
     resource: "@StackInstanceApiServerBundle/Resources/config/routing.yml"
     prefix:   /
 ```
+
+## Website
+- http://bundles.stackinstance.com
+- http://www.stackinstance.com
+- https://codedump.io
+- http://www.codetrust.nl
