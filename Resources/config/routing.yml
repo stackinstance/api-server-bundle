@@ -1,3 +1,19 @@
-stack_instance_api_server_example:
-    path:     /example
-    defaults: { _controller: StackInstanceApiServerBundle:Example:index }
+stack_instance_api_server_instance_list:
+    path:     /api/instance
+    defaults: { _controller: StackInstanceApiServerBundle:Instance:list }
+    methods: [GET]
+
+stack_instance_api_server_instance_add:
+    path:     /api/instance
+    defaults: { _controller: StackInstanceApiServerBundle:Instance:add }
+    methods: [POST]
+
+stack_instance_api_server_instance_update:
+    path:     /api/instance/{id}
+    defaults: { id: null, _controller: StackInstanceApiServerBundle:Instance:update }
+    methods: [PUT]
+
+stack_instance_api_server_instance_delete:
+    path:     /api/instance/{id}
+    methods: [DELETE]
+    defaults: { id: null, _controller: StackInstanceApiServerBundle:Instance:delete  }
