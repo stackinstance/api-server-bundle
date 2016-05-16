@@ -3,6 +3,7 @@
 namespace StackInstance\ApiServerBundle\Controller;
 use Doctrine\DBAL\DBALException;
 use StackInstance\ApiServerBundle\Entity\Instance;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -41,8 +42,9 @@ class InstanceController extends AbstractApiController
             return $this->errorResponse(401, 'Unauthorized');
         }
 
-        if ($this->isValidAddCall($request) === false) {
-            return $this->errorResponse(401, 'No title provided');
+        $isValidAddCall = $this->isValidAddCall($request);
+        if ($isValidAddCall instanceof JsonResponse) {
+            return $isValidAddCall;
         }
 
         /** @var Instance $instance */
@@ -61,15 +63,33 @@ class InstanceController extends AbstractApiController
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @param Request $request
+     * @param         $id
+     * @return bool|JsonResponse
      */
-    public function updateAction()
+    public function updateAction(Request $request, $id)
     {
         if ($this->isAuthorized() !== true) {
             return $this->errorResponse(401, 'Unauthorized');
         }
 
-        $responseData = ['data' => 'test'];
+        $isValidUpdateCall = $this->isValidUpdateCall($request, $id);
+        if ($isValidUpdateCall instanceof JsonResponse) {
+            return $isValidUpdateCall;
+        }
+
+        /** @var Instance $instance */
+        $instance = $this->updateInstance($request, $id);
+
+        if ($instance === false) {
+            return $this->errorResponse(401, 'Could not update instance');
+        }
+
+        $response = ['id' => $instance->getId(),
+            'title' => $instance->getTitle()
+        ];
+
+        $responseData = ['data' => $response];
         return $this->successResponse($responseData);
     }
 
@@ -94,7 +114,7 @@ class InstanceController extends AbstractApiController
     {
         $title = $request->get('title');
         if ($title ===  null) {
-            return false;
+            return $this->errorResponse(401, 'No title provided');
         }
 
         return true;
@@ -102,16 +122,41 @@ class InstanceController extends AbstractApiController
 
     /**
      * @param Request $request
-     * @return bool|Instance
+     * @param         $id
+     * @return bool|\Symfony\Component\HttpFoundation\JsonResponse
      */
-    protected function createInstance(Request $request)
+    protected function isValidUpdateCall(Request $request, $id)
+    {
+        if ($id === null) {
+            return $this->errorResponse(401, 'No instance id provided');
+        }
+
+        $title = $request->get('title');
+        if ($title ===  null) {
+            return $this->errorResponse(401, 'No title provided');
+        }
+
+        return true;
+    }
+
+    /**
+     * @param Request $request
+     * @param         $id
+     * @return bool|null|object|Instance
+     */
+    protected function updateInstance(Request $request, $id)
     {
         $title = $request->get('title');
 
-        $instance = new Instance();
+        $entityManager = $this->getDoctrine()->getManager();
+        $instance = $entityManager->getRepository('StackInstanceApiServerBundle:Instance')->findOneBy(array('id' => $id));
+
+        if ($instance === null) {
+            return false;
+        }
+
         $instance->setTitle($title);
 
-        $entityManager = $this->getDoctrine()->getManager();
         try {
             $entityManager->persist($instance);
             $entityManager->flush();
@@ -120,4 +165,5 @@ class InstanceController extends AbstractApiController
         }
         return $instance;
     }
+
 }
