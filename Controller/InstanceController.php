@@ -94,15 +94,18 @@ class InstanceController extends AbstractApiController
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @param $id
+     * @return JsonResponse
      */
-    public function deleteAction()
+    public function deleteAction($id)
     {
-        if ($this->isAuthorized() !== true) {
-            return $this->errorResponse(401, 'Unauthorized');
+        $deleted = $this->deleteInstance($id);
+        if ($deleted === false) {
+            return $this->errorResponse(401, 'Could not delete instance');
         }
 
-        $responseData = ['data' => 'test'];
+        $response = ['deleted' => true];
+        $responseData = ['data' => $response];
         return $this->successResponse($responseData);
     }
 
@@ -164,6 +167,29 @@ class InstanceController extends AbstractApiController
             return false;
         }
         return $instance;
+    }
+
+    /**
+     * @param Request $request
+     * @param         $id
+     * @return bool|null|object|Instance
+     */
+    protected function deleteInstance($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $instance = $entityManager->getRepository('StackInstanceApiServerBundle:Instance')->findOneBy(array('id' => $id));
+
+        if ($instance === null) {
+            return false;
+        }
+
+        try {
+            $entityManager->remove($instance);
+            $entityManager->flush();
+        } catch (DBALException $e) {
+            return false;
+        }
+        return true;
     }
 
 }
