@@ -41,4 +41,14 @@ abstract class AbstractApiController extends Controller
         $response->setStatusCode($code, $message);
         return $response;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAuthorized()
+    {
+        // add your own authorization here
+
+        return true;
+    }
 }
