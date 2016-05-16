@@ -117,6 +117,41 @@ class InstanceController extends AbstractApiController
     {
         $title = $request->get('title');
         if ($title ===  null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param Request $request
+     * @return bool|Instance
+     */
+    protected function createInstance(Request $request)
+    {
+        $title = $request->get('title');
+
+        $instance = new Instance();
+        $instance->setTitle($title);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        try {
+            $entityManager->persist($instance);
+            $entityManager->flush();
+        } catch (DBALException $e) {
+            return false;
+        }
+        return $instance;
+    }
+
+    /**
+     * @param Request $request
+     * @return bool
+     */
+    protected function isValidAddCall(Request $request)
+    {
+        $title = $request->get('title');
+        if ($title ===  null) {
             return $this->errorResponse(401, 'No title provided');
         }
 
@@ -170,9 +205,8 @@ class InstanceController extends AbstractApiController
     }
 
     /**
-     * @param Request $request
-     * @param         $id
-     * @return bool|null|object|Instance
+     * @param $id
+     * @return bool
      */
     protected function deleteInstance($id)
     {
