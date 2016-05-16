@@ -111,20 +111,6 @@ class InstanceController extends AbstractApiController
 
     /**
      * @param Request $request
-     * @return bool
-     */
-    protected function isValidAddCall(Request $request)
-    {
-        $title = $request->get('title');
-        if ($title ===  null) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * @param Request $request
      * @return bool|Instance
      */
     protected function createInstance(Request $request)
