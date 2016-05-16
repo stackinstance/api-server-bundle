@@ -1,6 +1,7 @@
 <?php
 
 namespace StackInstance\ApiServerBundle\Controller;
+
 use Doctrine\DBAL\DBALException;
 use StackInstance\ApiServerBundle\Entity\Instance;
 use Symfony\Component\HttpFoundation\JsonResponse;
