@@ -13,6 +13,10 @@ class InstanceController extends AbstractApiController
      */
     public function listAction()
     {
+        if ($this->isAuthorized() !== true) {
+            return $this->errorResponse(401, 'Unauthorized');
+        }
+
         $instances = $this->getDoctrine()->getRepository('StackInstanceApiServerBundle:Instance')->findAll();
 
         $data = [];
@@ -30,6 +34,10 @@ class InstanceController extends AbstractApiController
      */
     public function addAction()
     {
+        if ($this->isAuthorized() !== true) {
+            return $this->errorResponse(401, 'Unauthorized');
+        }
+
         $responseData = ['data' => 'test'];
         return $this->successResponse($responseData);
     }
@@ -39,6 +47,10 @@ class InstanceController extends AbstractApiController
      */
     public function updateAction()
     {
+        if ($this->isAuthorized() !== true) {
+            return $this->errorResponse(401, 'Unauthorized');
+        }
+
         $responseData = ['data' => 'test'];
         return $this->successResponse($responseData);
     }
@@ -48,6 +60,10 @@ class InstanceController extends AbstractApiController
      */
     public function deleteAction()
     {
+        if ($this->isAuthorized() !== true) {
+            return $this->errorResponse(401, 'Unauthorized');
+        }
+        
         $responseData = ['data' => 'test'];
         return $this->successResponse($responseData);
     }
