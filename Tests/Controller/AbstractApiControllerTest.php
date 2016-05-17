@@ -2,9 +2,11 @@
 
 namespace StackInstance\ApiServerBundle\Tests\Controller;
 
+use Doctrine\Bundle\DoctrineBundle\Command\Proxy\CreateSchemaDoctrineCommand;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\HttpKernel\Client;
 
 /**
@@ -41,7 +43,14 @@ class AbstractApiControllerTest extends WebTestCase
         $this->application->setAutoExit(false);
         $this->runConsole("doctrine:da:dr", array("--force" => true));
         $this->runConsole("doctrine:da:cr");
-        $this->runConsole("doctrine:mi:mi");
+
+        $command = new CreateSchemaDoctrineCommand();
+        $this->application->add($command);
+        $input = new ArrayInput(array(
+            'command' => 'doctrine:schema:create --force',
+        ));
+        $command->run($input, new ConsoleOutput());
+
         $this->runConsole("doctrine:fixtures:load", array("--fixtures" => __DIR__ . "/../../DataFixtures"));
         $this->entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
 

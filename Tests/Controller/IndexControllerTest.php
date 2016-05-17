@@ -2,7 +2,9 @@
 
 namespace StackInstance\ApiServerBundle\Tests\Controller;
 
-class DefaultControllerTest extends AbstractApiControllerTest
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+class DefaultControllerTest extends WebTestCase
 {
     public function testAuthorizedIndex()
     {
