@@ -2,8 +2,6 @@
 
 namespace StackInstance\ApiServerBundle\Tests\Controller;
 
-use StackInstance\ApiServerBundle\Tests\AbstractApiControllerTest;
-
 class DefaultControllerTest extends AbstractApiControllerTest
 {
     public function testAuthorizedIndex()

@@ -1,6 +1,6 @@
 <?php
 
-namespace StackInstance\ApiServerBundle\Tests;
+namespace StackInstance\ApiServerBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -59,5 +59,10 @@ class AbstractApiControllerTest extends WebTestCase
         $options["-q"] = null;
         $options = array_merge($options, array('command' => $command));
         return $this->application->run(new ArrayInput($options));
+    }
+
+    public function testNoTest()
+    {
+        $this->assertEquals(true, true);
     }
 }
