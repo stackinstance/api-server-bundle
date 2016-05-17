@@ -105,8 +105,7 @@ class InstanceController extends AbstractApiController
             return $this->errorResponse(401, 'Could not delete instance');
         }
 
-        $response = ['deleted' => true];
-        $responseData = ['data' => $response];
+        $responseData = ['deleted' => true];
         return $this->successResponse($responseData);
     }
 
