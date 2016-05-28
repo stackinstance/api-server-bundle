@@ -13,6 +13,9 @@ stack_instance_api_server:
 ## Tables creating for the example
 php app/console doctrine:schema:update --force
 
+## TODO
+- Update files with license comments block
+
 ## Website
 - http://bundles.stackinstance.com
 - http://www.stackinstance.com
