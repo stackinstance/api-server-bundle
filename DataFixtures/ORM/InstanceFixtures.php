@@ -20,6 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * InstanceFixtures
+ * @author Ray Kootstra <r.kootstra@stackinstance.com>
  */
 class InstanceFixtures extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {

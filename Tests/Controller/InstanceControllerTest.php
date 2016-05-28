@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * InstanceControllerTest
+ * @author Ray Kootstra <r.kootstra@stackinstance.com>
  */
 class InstanceControllerTest extends WebTestCase
 {
