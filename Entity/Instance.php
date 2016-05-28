@@ -18,6 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="instance")
  * @ORM\Entity(repositoryClass="StackInstance\ApiServerBundle\Repository\InstanceRepository")
+ * @author Ray Kootstra <r.kootstra@stackinstance.com>
  */
 class Instance
 {

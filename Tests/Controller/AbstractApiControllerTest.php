@@ -20,6 +20,7 @@ use Symfony\Component\HttpKernel\Client;
 
 /**
  * AbstractApiControllerTest
+ * @author Ray Kootstra <r.kootstra@stackinstance.com>
  */
 class AbstractApiControllerTest extends WebTestCase
 {
