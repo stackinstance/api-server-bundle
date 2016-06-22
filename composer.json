@@ -21,7 +21,7 @@
     },
     "repositories" : [{
         "type" : "vcs",
-        "url" : "http://git.kootstradevelopment.nl/r.kootstra/stackinstance-bundles-api-server-bundle.git"
+        "url" : "https://github.com/stackinstance/api-server-bundle"
     }],
     "autoload": {
         "psr-0": { "StackInstance\\ApiServerBundle": "" }
