@@ -30,7 +30,8 @@
     "target-dir": "StackInstance/ApiServerBundle",
     "extra" : {
     "branch-alias" : {
-            "dev-master" : "0.0.1-dev"
+            "dev-master" : "1.0.0"
         }
-    }
+    },
+    "version": "1.0.0"
 }
