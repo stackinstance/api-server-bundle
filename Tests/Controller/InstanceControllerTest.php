@@ -11,13 +11,13 @@
 
 namespace StackInstance\ApiServerBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use StackInstance\ApiServerBundle\Tests\Controller\AbstractApiControllerTest;
 
 /**
  * InstanceControllerTest
  * @author Ray Kootstra <r.kootstra@stackinstance.com>
  */
-class InstanceControllerTest extends WebTestCase
+class InstanceControllerTest extends AbstractApiControllerTest
 {
     public function testGetInstanceList()
     {
