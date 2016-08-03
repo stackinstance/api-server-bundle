@@ -79,9 +79,4 @@ class AbstractApiControllerTest extends WebTestCase
         $options = array_merge($options, array('command' => $command));
         return $this->application->run(new ArrayInput($options));
     }
-
-    public function testNoTest()
-    {
-        $this->assertEquals(true, true);
-    }
 }
