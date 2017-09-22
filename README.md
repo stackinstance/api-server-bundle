@@ -14,7 +14,5 @@ stack_instance_api_server:
 php app/console doctrine:schema:update --force
 
 ## Website
-- http://bundles.stackinstance.com
 - http://www.stackinstance.com
-- https://codedump.io
-- http://www.codetrust.nl
+- http://www.raymondkootstra.nl
