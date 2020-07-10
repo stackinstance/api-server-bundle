@@ -14,5 +14,4 @@ stack_instance_api_server:
 php app/console doctrine:schema:update --force
 
 ## Website
-- http://www.stackinstance.com
-- http://www.raymondkootstra.nl
+- https://raymondkootstra.nl
